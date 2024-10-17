@@ -19,7 +19,7 @@ class SaveFileUtil {
             println(HEADER_FILE_PATH)
             val headerFile = File(HEADER_FILE_PATH)
             if (!headerFile.exists()){
-                headerFile.mkdir()
+                headerFile.mkdirs()
             }
         }
         @Volatile
@@ -48,6 +48,11 @@ class SaveFileUtil {
             }
         }
     }
+
+    suspend fun getFile(fileName: String) = File(
+        HEADER_FILE_PATH,
+        fileName
+    )
 
 
 

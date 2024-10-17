@@ -5,6 +5,7 @@ import cn.straosp.jotting.server.service.AccountService
 import cn.straosp.jotting.server.util.OperationMessage
 import cn.straosp.jotting.server.util.RequestResult
 import cn.straosp.jotting.server.util.SaveFileUtil
+import io.ktor.http.ContentType
 import io.ktor.http.content.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
@@ -99,6 +100,12 @@ fun Routing.accountController(){
                 }
                 call.respond(RequestResult.error())
             }
+            get("/header/{fileName}"){
+                val fileName = call.parameters["fileName"] ?: return@get call.respond(RequestResult.error())
+                val fileContent = SaveFileUtil.getInstance().getFile(fileName)
+                call.respondBytes(fileContent.readBytes(), ContentType.Image.Any)
+            }
+
         }
 
 
