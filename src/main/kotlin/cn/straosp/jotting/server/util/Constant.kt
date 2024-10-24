@@ -22,6 +22,15 @@ object Constant {
     const val UPDATE_ACCOUNT_HEADER_FAILED_CODE = 170
     const val UPDATE_ACCOUNT_HEADER_FAILED_MESSAGE = "更新头像失败"
 
+    const val DELETE_FILED_CODE = 180
+    const val DELETE_FAILED_MESSAGE = "删除失败"
+
+    const val ACTION_FAILED_CODE = 300
+    const val ACTION_FAILED_MESSAGE = "操作失败"
+
+    const val NOT_FOUND_ACCOUNT_CODE = 102
+    const val NOT_FOUND_ACCOUNT_MESSAGE = "用户未找到"
+
 
 
 }

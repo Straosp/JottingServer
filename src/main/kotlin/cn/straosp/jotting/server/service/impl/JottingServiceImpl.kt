@@ -2,6 +2,7 @@ package cn.straosp.jotting.server.service.impl
 
 import cn.straosp.jotting.server.db.*
 import cn.straosp.jotting.server.service.JottingService
+import cn.straosp.jotting.server.util.ACTION_FAILED
 import cn.straosp.jotting.server.util.Constant
 import cn.straosp.jotting.server.util.LocalDateRange
 import cn.straosp.jotting.server.util.OperationMessage
@@ -103,18 +104,18 @@ class JottingServiceImpl : JottingService {
         val result = AppDatabase.database.delete(JottingTable){
             it.accountID eq accountID and (it.id eq jottingID)
         }
-        return if (result > 0) Result.success(true) else Result.failure(OperationMessage(1,"test"))
-
+        return if (result > 0) Result.success(true) else Result.failure(ACTION_FAILED)
     }
 
     override fun cancelReminder(accountID: Int,jottingID: Int): Result<Boolean> {
         val result = AppDatabase.database.update(JottingTable){
             set(it.isNeedReminder,false)
+            set(it.reminderID,0)
             where {
                 it.accountID eq accountID and (it.id eq jottingID)
             }
         }
-        return if (result > 0) Result.success(true) else Result.failure(OperationMessage(1,"test"))
+        return if (result > 0) Result.success(true) else Result.failure(ACTION_FAILED)
     }
 
     override fun addOneJotting(accountID: Int,addJotting: AddJotting): Result<Boolean> {

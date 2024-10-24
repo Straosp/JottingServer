@@ -21,7 +21,7 @@ class AccountServiceImpl : AccountService {
         account?.let {
             return Result.success(account)
         }
-        return Result.failure(OperationMessage(10,"未找到该用户"))
+        return Result.failure(OperationMessage(Constant.NOT_FOUND_ACCOUNT_CODE, Constant.NOT_FOUND_ACCOUNT_MESSAGE))
     }
 
     override fun register(phone: String, password: String): Result<Account> {
@@ -48,7 +48,7 @@ class AccountServiceImpl : AccountService {
         account?.let {
             return Result.success(account)
         }
-        return Result.failure(OperationMessage(10,"未找到该用户"))
+        return Result.failure(OperationMessage(Constant.NOT_FOUND_ACCOUNT_CODE, Constant.NOT_FOUND_ACCOUNT_MESSAGE))
     }
 
     override fun saveUserHeader(accountId: Int, fileName: String): Result<Boolean> {
